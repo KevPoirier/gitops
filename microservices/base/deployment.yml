@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: microservice
+  name: microservice
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice
+  template:
+    metadata:
+      labels:
+        app: microservice
+    spec:
+      imagePullSecrets:
+        - name: docker-cred
+      containers:
+          image: image-name:image-tag
+          name: microservice
+          ports:
+            - containerPort: 80
+              name: webport
+      restartPolicy: Always

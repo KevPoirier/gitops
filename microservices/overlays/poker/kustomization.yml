@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+components:
+- ../../components/dev
+labels:
+- includeSelectors: true
+  pairs:
+    app: order-offer-java
+images:
+- name: synerkevin/image-app
+  newName: synerkevin/test
+  newTag: 33154acc34ac13e97a49412d76f7a63a10a53775
