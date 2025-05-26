@@ -7,7 +7,7 @@ components:
 labels:
 - includeSelectors: true
   pairs:
-    app: order-offer-java
+    app: poker
 images:
 - name: synerkevin/image-app
   newName: synerkevin/test
