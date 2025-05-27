@@ -10,6 +10,21 @@ patches:
       spec:
         replicas: 1
   - patch: |
+      - op: add
+        path: /spec/template/spec/affinity
+        value:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: mode
+                  operator: In
+                  values:
+                  - poker
+    target:
+      kind: Deployment
+      name: microservice
+  - patch: |
       - op: replace
         path: /spec/template/spec/affinity
         value:
