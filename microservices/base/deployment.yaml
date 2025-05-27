@@ -18,8 +18,8 @@ spec:
       imagePullSecrets:
         - name: docker-cred
       containers:
+        - name: microservice
           image: image-name:image-tag
-          name: microservice
           ports:
             - containerPort: 80
               name: webport
