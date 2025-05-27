@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: microservice
-  name: microservice
+    app: poker
+  name: poker
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: microservice
+      app: poker
   template:
     metadata:
       labels:
-        app: microservice
+        app: poker
     spec:
       imagePullSecrets:
         - name: docker-cred
       containers:
-        - name: microservice
+        - name: poker
           image: image-name:image-tag
           ports:
             - containerPort: 80
