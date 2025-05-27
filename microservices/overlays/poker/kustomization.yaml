@@ -12,3 +12,18 @@ images:
 - name: synerkevin/image-app
   newName: synerkevin/test
   newTag: 33154acc34ac13e97a49412d76f7a63a10a53775
+patches:
+- patch: |
+    - op: replace
+      path: /metadata/name
+      value: poker
+  target:
+    kind: Deployment
+    name: microservice
+- patch: |-
+    - op: replace
+      path: /metadata/name
+      value: poker
+  target:
+    kind: Service
+    name: service-name
