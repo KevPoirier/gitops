@@ -9,34 +9,28 @@ patches:
         name: microservice
       spec:
         replicas: 1
-
-patchesJson6902:
-  - target:
-      group: apps
-      version: v1
+  - patch: |
+        - op: add
+          path: /spec/template/spec/containers/0/env/-
+          value:
+            name: SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE
+            value: "5"
+    target:
       kind: Deployment
       name: microservice
-    patch: |
-      - op: add
-        path: /spec/template/spec/containers/0/env/-
-        value:
-          name: SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE
-          value: "5"
-
-  - target:
-      group: apps
-      version: v1
-      kind: Deployment
-      name: microservice
-    patch: |
+  - patch: |
       - op: replace
         path: /spec/template/spec/affinity
         value:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-              - matchExpressions:
-                - key: mode
-                  operator: In
-                  values:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: mode
+                    operator: In
+                    values:
                     - microservice
+    target:
+      kind: Deployment
+      name: microservice
+            
