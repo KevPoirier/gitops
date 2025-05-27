@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - ../../base
 components:
-- ../../components/dev
+- ../../components
 labels:
 - includeSelectors: true
   pairs:
