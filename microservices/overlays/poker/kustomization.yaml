@@ -10,7 +10,7 @@ labels:
     app: poker
 images:
 - name: image-name
-  newName: synerkevin/poker
+  newName: synerkevin/exogithubactions
   newTag: v0.1.3
 patches:
 - patch: |
