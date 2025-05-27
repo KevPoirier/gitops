@@ -11,7 +11,7 @@ labels:
 images:
 - name: image-name
   newName: synerkevin/poker
-  newTag: 33154acc34ac13e97a49412d76f7a63a10a53775
+  newTag: v0.1.3
 patches:
 - patch: |
     - op: replace
