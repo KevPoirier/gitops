@@ -9,8 +9,8 @@ labels:
   pairs:
     app: poker
 images:
-- name: synerkevin/image-app
-  newName: synerkevin/test
+- name: image-name
+  newName: synerkevin/poker
   newTag: 33154acc34ac13e97a49412d76f7a63a10a53775
 patches:
 - patch: |
