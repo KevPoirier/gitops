@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata: 
+  name: deploy-dev-template
+spec: 
+  entrypoint: deploy
+  templates:
+  - name: deploy
+    inputs:
+      artifacts:
+        - name: folder
+          path: /src
+      parameters:
+      - name: image
+      - name: tag
+      - name: env
+      - name: git-token
+        valueFrom:
+          configMapKeyRef:
+            name: github-cm
+            key: token
+    script:
+      image: kevpoirier/devops-container
+      command: [sh]
+      source:
+        cd /src/microservices/overlays/{{= trimPrefix(inputs.parameters.image, "kevpoirier/") }}/{{ inputs.parameters.env }}/ && kustomize edit set image image-name={{inputs.parameters.image}}:{{inputs.parameters.tag}} && git checkout main && git config user.name "kevpoirier" && git config user.email "kevin.poirier@synerglass-soft.com"&&git commit -am "Updating the {{= trimPrefix(inputs.parameters.image, "synerkevin/") }} image tag to {{ inputs.parameters.tag }}" && git push "https://{{inputs.parameters.git-token}}@github.com/KevPoirier/gitops.git" HEAD:main
