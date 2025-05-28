@@ -15,8 +15,6 @@ spec:
       labels:
         app: microservice
     spec:
-      imagePullSecrets:
-        - name: docker-cred
       containers:
         - name: microservice
           image: image-name:image-tag
