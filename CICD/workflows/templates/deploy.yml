@@ -22,5 +22,16 @@ spec:
     script:
       image: kevpoirier/devops-container
       command: [sh]
-      source:
-        cd /src/microservices/overlays/{{= trimPrefix(inputs.parameters.image, "kevpoirier/") }}/{{ inputs.parameters.env }}/ && kustomize edit set image image-name={{inputs.parameters.image}}:{{inputs.parameters.tag}} && git checkout main && git config user.name "kevpoirier" && git config user.email "kevin.poirier@synerglass-soft.com"&&git commit -am "Updating the {{= trimPrefix(inputs.parameters.image, "synerkevin/") }} image tag to {{ inputs.parameters.tag }}" && git push "https://{{inputs.parameters.git-token}}@github.com/KevPoirier/gitops.git" HEAD:main
+      source: |
+        echo "🔁 Starting deploy workflow"
+        cd /src/microservices/overlays/{{inputs.parameters.env}} || exit 1
+        echo "📍 Now in: $(pwd)"
+        ls -al
+        kustomize edit set image synerkevin/exogithubactions={{inputs.parameters.image}}:{{inputs.parameters.tag}}
+        echo "🧾 Updated kustomization.yaml:"
+        cat kustomization.yaml
+        git config user.name "kevpoirier"
+        git config user.email "kevin.poirier@synerglass-soft.com"
+        git add kustomization.yaml
+        git commit -m "Updating {{inputs.parameters.image}} image tag to {{inputs.parameters.tag}}"
+        git push "https://{{inputs.parameters.git-token}}@github.com/KevPoirier/gitops.git" HEAD:main
