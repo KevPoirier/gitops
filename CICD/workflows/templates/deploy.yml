@@ -27,10 +27,10 @@ spec:
         cd /src/microservices/overlays/{{inputs.parameters.env}} || exit 1
         echo "📍 Now in: $(pwd)"
         ls -al
-        kustomize edit set image synerkevin/exogithubactions={{inputs.parameters.image}}:{{inputs.parameters.tag}}
+        kustomize edit set image KevPoirier/exogithubactions={{inputs.parameters.image}}:{{inputs.parameters.tag}}
         echo "🧾 Updated kustomization.yaml:"
         cat kustomization.yaml
-        git config user.name "kevpoirier"
+        git config user.name "KevPoirier"
         git config user.email "kevin.poirier@synerglass-soft.com"
         git add kustomization.yaml
         git commit -m "Updating {{inputs.parameters.image}} image tag to {{inputs.parameters.tag}}"
