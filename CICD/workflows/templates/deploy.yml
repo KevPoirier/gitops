@@ -20,7 +20,7 @@ spec:
             name: github-cm
             key: token
     script:
-      image: kevpoirier/devops-container
+      image: synerkevin/devops-container
       command: [sh]
       source: |
         echo "🔁 Starting deploy workflow"
