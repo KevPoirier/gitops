@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: poker-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: poker.local
+      http:
+        paths:
+         -path: /
+           pathType: Prefix
+           backend:
+            service:
+              name: service-name
+              port:
+                number: 80
