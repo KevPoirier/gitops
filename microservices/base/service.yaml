@@ -4,6 +4,8 @@ metadata:
   name: service-name
   namespace: default
 spec:
+  selector:
+    app: microservice
   ports:
   - port: 80
     protocol: TCP
