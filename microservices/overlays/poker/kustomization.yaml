@@ -11,7 +11,7 @@ labels:
 images:
 - name: image-name
   newName: synerkevin/exogithubactions
-  newTag: v0.1.10
+  newTag: v0.1.11
 patches:
 - patch: |
     - op: replace
