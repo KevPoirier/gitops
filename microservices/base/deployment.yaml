@@ -19,6 +19,6 @@ spec:
         - name: poker
           image: image-name:image-tag
           ports:
-            - containerPort: 80
+            - containerPort: 8080
               name: webport
       restartPolicy: Always
