@@ -5,14 +5,15 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  rules:
-    - host: poker.local
-      http:
-        paths:
-         - path: /
-           pathType: Prefix
-           backend:
-            service:
-              name: service-name
-              port:
-                number: 80
+    ingressClassName: nginx
+    rules:
+      - host: poker.local
+        http:
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: service-name
+                  port:
+                    number: 80
