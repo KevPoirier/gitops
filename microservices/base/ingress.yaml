@@ -14,6 +14,6 @@ spec:
               pathType: Prefix
               backend:
                 service:
-                  name: service-name
+                  name: poker
                   port:
                     number: 80
