@@ -11,7 +11,7 @@ labels:
 images:
 - name: image-name
   newName: synerkevin/helloService
-  newTag: v0.1.11
+  newTag: v0.1.1
 patches:
 - patch: |
     - op: replace
