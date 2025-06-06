@@ -10,7 +10,7 @@ labels:
     app: hello
 images:
 - name: image-name
-  newName: synerkevin/helloService
+  newName: synerkevin/helloservice
   newTag: v0.1.1
 patches:
 - patch: |
