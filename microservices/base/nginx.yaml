@@ -3,6 +3,7 @@ kind: ServiceAccount
 metadata:
   name: nginx-ingress
   namespace: default
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -15,6 +16,13 @@ rules:
   - apiGroups: ["networking.k8s.io"]
     resources: ["ingresses", "ingressclasses"]
     verbs: ["get", "list", "watch"]
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses/status"]
+    verbs: ["update"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["create", "patch"]
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -28,6 +36,7 @@ subjects:
   - kind: ServiceAccount
     name: nginx-ingress
     namespace: default
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -66,7 +75,9 @@ spec:
                   fieldPath: metadata.namespace
           ports:
             - containerPort: 80
+              name: http
             - containerPort: 443
+              name: https
 
 ---
 apiVersion: v1
@@ -77,6 +88,8 @@ metadata:
     app: nginx-ingress
 spec:
   type: NodePort
+  selector:
+    app: nginx-ingress
   ports:
     - name: http
       port: 80
@@ -86,11 +99,19 @@ spec:
       port: 443
       targetPort: 443
       nodePort: 30443
-  selector:
-    app: nginx-ingress
 
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-configuration
+  namespace: default
+data: {}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+spec:
+  controller: k8s.io/ingress-nginx
