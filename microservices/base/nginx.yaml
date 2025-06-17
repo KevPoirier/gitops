@@ -45,6 +45,7 @@ spec:
       labels:
         app: nginx-ingress
     spec:
+      serviceAccountName: nginx-ingress
       containers:
         - name: controller
           image: registry.k8s.io/ingress-nginx/controller:v1.10.1
