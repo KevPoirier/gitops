@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/KevPoirier/gitops
-    targetRevision: main
+    targetRevision: HEAD
     path: infrastructure/nginx-ingress
   syncPolicy:
     automated:
