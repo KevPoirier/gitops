@@ -10,17 +10,17 @@ spec:
       - host: poker.local
         http:
           paths:
-            - path: /
-              pathType: Prefix
-              backend:
-                service:
-                  name: poker
-                  port:
-                    number: 80
-            - path: /hello
-              pathType: Prefix
-              backend:
-                service:
-                  name: hello
-                  port:
-                    number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hello
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: poker
+                port:
+                  number: 80
