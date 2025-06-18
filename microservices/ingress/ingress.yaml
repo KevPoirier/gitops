@@ -6,6 +6,10 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
     ingressClassName: nginx
+    tls:
+      - hosts:
+        - poker.local
+        secretName: poker-local-tls
     rules:
       - host: poker.local
         http:
